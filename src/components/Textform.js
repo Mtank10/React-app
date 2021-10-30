@@ -30,16 +30,16 @@ export default function Textform(props) {
                 <h2>{props.heading}</h2>
                 <textarea className="form-control" value={text}  onChange={handleOnChange} id="myBox" rows="8"></textarea>
             </div>
-            <button className="btn btn-primary mx-3" onClick={handleUpClick}>Convert to uppercase</button>
-            <button className="btn btn-primary mx-3" onClick={handleLoClick}>Convert to lowercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-3" onClick={handleUpClick}>Convert to uppercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-3" onClick={handleLoClick}>Convert to lowercase</button>
          </div>
         </div>
         <div className="container my-3">
             <h1>Your Text Summary</h1>
-            <p>{text.split(" ").length} words and {text.length} charachters</p>
+            <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} charachters</p>
             <p>{0.08 *text.split(" ").length} Minutes read</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p>{text.length>0?text:"Nothing to preview"}</p>
         </div>
         </>
     )
